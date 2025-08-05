@@ -16,12 +16,12 @@ class StoreController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string',
+            //'avatar' => 'required|string',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
         ]);
 
         $user = User::create($validated);
-
         return response()->json([
             'success' => true,
             'user' => $user,

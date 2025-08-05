@@ -11,6 +11,7 @@ export default function () {
     ): Promise<void> => {
         await axios.post('/api/users', formData)
             .then((res) => {
+                console.log('RESULTAT==>',res);
                 errors.value = {};
                 window.location.href = '/';
             })
@@ -21,7 +22,9 @@ export default function () {
         id: number,
     ): Promise<void> => {
         await axios.get(`/api/users/${id}`)
-            .then((res) => user.value = res.data.data)
+
+            .then((res) => { console.log('RESULTAT==>',res.data);
+                user.value = res.data.data} )
             .catch((err) => console.log(err));
     }
 

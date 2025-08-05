@@ -6,7 +6,7 @@
         <template
             v-if="errors.name"
         >
-            <span style="color: red;" v-text="errors.name[0]" />
+            <span style="color: red;" v-text="errors.name[0]" ></span>
         </template>
 
         <br>
@@ -18,7 +18,7 @@
         <template
             v-if="errors.email"
         >
-            <span style="color: red;" v-text="errors.email[0]" />
+            <span style="color: red;" v-text="errors.email[0]" ></span>
         </template>
 
         <br>
@@ -26,11 +26,19 @@
 
         <label for="password">Mot de passe</label>
         <input v-model="formData.password" type="password" id="password">
+        <label for="avatar">Avatar</label>
+        <input v-model="formData.avatar" type="text" id="avatar">
 
         <template
             v-if="errors.password"
         >
-            <span style="color: red;" v-text="errors.password[0]" />
+            <span style="color: red;" v-text="errors.password[0]" ></span>
+        </template>
+
+        <template
+            v-if="errors.avatar"
+        >
+            <span style="color: red;" v-text="errors.avatar[0]" ></span>
         </template>
 
         <br>
@@ -59,9 +67,11 @@ const formData = ref({
     email: '',
     password: '',
     password_confirmation: '',
+    avatar:'',
 });
 
 const createUserAction = async () => {
+    console.log(formData.value);
     await createUser(formData.value);
 }
 </script>

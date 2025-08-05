@@ -20,6 +20,7 @@
 <script setup lang="ts">
     import {ref} from "vue";
     import useUser from "../../composables/users/useUser";
+    import axios from "axios";
 
     const {
         user,

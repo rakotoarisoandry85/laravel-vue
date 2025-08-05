@@ -2,14 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/**
- * @mixin User
- */
-class UserResource extends JsonResource
+class ProductResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,9 +14,12 @@ class UserResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
+          return [
             'id' => $this->id,
-            'name' => $this->name,
+            'name_product' => $this->name_product,
+            'description' => $this->description,
+            'detail_price' => $this->detail_price,
+            'wholesale_price' => $this->wholesale_price,
             //'created_at' => $this->created_at->format(''),
         ];
     }
