@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 
 class UserCollection extends ResourceCollection
 {
-    public $collects = UserResource::class;
+    //public $collects = UserResource::class;
 
     /**
      * @param Request $request

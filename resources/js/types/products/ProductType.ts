@@ -3,5 +3,5 @@ export type ProductType = {
     name_product: string,
     description: string,
     detail_price: number,
-    wholesale_price: string,
+    wholesale_price: number,
 }

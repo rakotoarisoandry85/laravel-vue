@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Api\User;
+namespace App\Http\Controllers\Api\Product;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class StoreController extends Controller
+class StoreProductController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -15,16 +16,17 @@ class StoreController extends Controller
     public function __invoke(Request $request): JsonResponse
     {
         $validated = $request->validate([
-            'name' => 'required|string',
-            'avatar' => 'required|string',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed',
+            'name_product' => 'required|string',
+            'description' => 'required|string',
+            'detail_price' => 'required|numeric',
+            'wholesale_price' => 'required|numeric',
+
         ]);
         //dd($request);
-        $user = User::create($validated);
+        $product = Product::create($validated);
         return response()->json([
             'success' => true,
-            'user' => $user,
+            'product' => $product,
         ]);
     }
 }

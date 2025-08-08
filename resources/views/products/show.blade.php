@@ -5,11 +5,11 @@
             <div class="inline-flex items-start flex-wrap gap-3">
               @foreach ($produits as $produit)
             <div>
-                <li>
-                    <ul>{{ $produit->name_product }}</ul>
-                    <ul>{{$produit->description}}</ul>
-                    <ul>{{ $produit->detail_price }}</ul>
-                </li>
+                <ul class="list-disc">
+                    <li>{{ $produit->name_product }}</li>
+                    <li>{{$produit->description}}</li>
+                    <li>{{ $produit->detail_price }}</li>
+                </ul>
             </div>
               @endforeach
             </div>

@@ -18,6 +18,7 @@ class ProductCollection extends ResourceCollection
     {
         return [
           'data' => $this->collection,
+          'collects' => $this->collection->count(),
         ];
     }
 }

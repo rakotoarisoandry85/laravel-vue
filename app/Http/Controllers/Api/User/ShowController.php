@@ -14,6 +14,9 @@ class ShowController extends Controller
      */
     public function __invoke(User $user): UserResource
     {
-        return UserResource::make($user);
+        //dump(UserResource::make($user));
+        //Return an array ['id' => $this->id,'name' => $this->name,...]; <= Resource
+        $array_dto = UserResource::make($user);
+        return $array_dto;
     }
 }

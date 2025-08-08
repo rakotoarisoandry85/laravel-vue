@@ -1,7 +1,7 @@
 <template>
     <form>
         <label for="name">Nom de l'utilisateur</label>
-        <input v-model="formData.name" type="text" id="name">
+        <input v-model="formData.name" type="text" id="nameUser">
 
         <template
             v-if="errors.name"
@@ -71,7 +71,7 @@ const formData = ref({
 });
 
 const createUserAction = async () => {
-    console.log(formData.value);
+    console.log("creation...",formData.value);
     await createUser(formData.value);
 }
 </script>

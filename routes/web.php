@@ -17,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', \App\Http\Controllers\User\UsersListController::class);
 Route::get('/products', \App\Http\Controllers\Product\ProductListController::class);
+        /* ROUTES RELIANT AUX COMPONENTS VUE */
 Route::view('/users/create', 'users.create')->name('users.create');
+Route::view('/products/create', 'products.create')->name('products.create');
+Route::view('/products/{id}', 'products.show')->name('products.show');
 
  //Route::get('employeCfps/{idEmploye}/getReferent', [ModuleController::class, 'getReferent']);
+ /* ROUTES RELIANT AU CONTROLLER à une méthode */
 Route::get('list-product',[ListProdController::class,'getList']);
