@@ -2,10 +2,8 @@ import {ref} from "vue";
 import axios from "axios";
 import {ProductType} from "../../types/products/ProductType";
 
-
 export default function () {
     const errors = ref({});
-   // const user = ref<UserType>();
     const product = ref<ProductType>();
 
     const createProduct = async (
@@ -24,7 +22,7 @@ export default function () {
         id: number,
     ): Promise<void> => {
         await axios.get(`/api/products/${id}`)
-            .then((res) => { console.log('RESULTAT==>',res.data);
+            .then((res) => { console.log('RESULTAT one product ==>',res.data);
                 product.value = res.data.data} )
             .catch((err) => console.log(err));
     }
@@ -32,7 +30,6 @@ export default function () {
     return {
         errors,
         product,
-        //createUser,
         createProduct,
         showProduct,
     }

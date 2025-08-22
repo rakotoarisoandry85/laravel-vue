@@ -14,8 +14,9 @@
     },
     "dependencies": {
         "@headlessui/vue": "^1.7.13",
-        "@heroicons/vue": "^2.0.18",
+        "@heroicons/vue": "^2.2.0",
         "@vitejs/plugin-vue": "^4.2.1",
+        "tailwindcss-plugin-icons": "^2.2.2",
         "typescript": "^5.0.4",
         "vue": "^3.2.36",
         "vue-loader": "^17.3.1",

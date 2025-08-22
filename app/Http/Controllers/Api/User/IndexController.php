@@ -13,7 +13,9 @@ class IndexController extends Controller
     public function __invoke(Request $request): UserCollection
     {
         return new UserCollection(
-            resource: User::all(),
+            resource: User::orderBy('created_at', 'asc')
+                     ->limit(6)
+                     ->get()
         );
     }
 }

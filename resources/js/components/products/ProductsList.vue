@@ -1,5 +1,25 @@
 <template>
-  <div class="grid grid-cols-2 mt-10 gap-5">
+
+<div class="flex space-x-5">
+    <!-- COMPOSANT ProductsSelect -->
+        <products-select
+            v-if="products.length !== 0"
+
+            :products="products"
+
+            @update:modelValue="(id: number) => handleUpdateId(id)"
+        />
+    <!-- FIN COMPOSANT -->
+        <a v-if="product" href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ product.name_product }}</h5>
+            <p class="font-normal text-gray-700 dark:text-gray-400">{{ product.description }}</p>
+            <p class="font-normal text-gray-700 dark:text-gray-400"><span class="font-bold">Prix:</span> {{ product.detail_price }} Ar</p>
+            <p class="font-normal text-gray-700 dark:text-gray-400"><span class="font-bold">Prix de gros:</span>  {{ product.wholesale_price }} Ar</p>
+        </a>
+
+</div>
+
+  <div class="grid grid-cols-4 mt-5 gap-5">
     <div
       v-for="product in products"
       :key="product.id"
@@ -27,7 +47,11 @@
               </h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              {{ product.description }}
+                {{ product.description.length>35?
+                    product.description.substring(0,35) +'...'
+                :
+                    product.description
+                }}
             </p>
             <p class="text-lg font-semibold text-gray-900 dark:text-gray-100">
               Prix : {{ product.detail_price }} €
@@ -71,7 +95,7 @@
     const products = ref([]);
 
     const loadFromServer = async () => {
-        await axios.get('/api/products/list')
+        await axios.get('/api/products')
             .then((res) => {
                  console.log(res);
                 products.value = res.data.data})
@@ -80,9 +104,11 @@
 
     loadFromServer();
 
-    // const handleUpdateId = async (
-    //     id: number
-    // ): Promise<void> => {
-    //     await showProduct(id);
-    // }
+    const handleUpdateId = async (
+        id: number
+    ): Promise<void> => {
+        await showProduct(id);
+    }
+
+
 </script>

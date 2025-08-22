@@ -73,4 +73,5 @@ const createProductAction = async () => {
     console.log("creation du produit réussi...",formData.value);
     await createProduct(formData.value);
 }
+
 </script>

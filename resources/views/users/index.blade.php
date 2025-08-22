@@ -1,7 +1,13 @@
 @extends('app')
 
 @section('content')
-    <h2>Liste des utilisateurs</h2>
-    <a href="{{ route('users.create') }}">Ajouter un utilisateur</a>
+
+{{-- <app/> --}}
+
+    <navbar>
+
+    </navbar>
     <users-list />
+
+
 @endsection
