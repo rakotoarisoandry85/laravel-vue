@@ -194,7 +194,6 @@
                                             <button
                                                 type="submit"
                                                 class="w-full p-4"
-
                                             >
                                                 Submit
                                             </button>
@@ -208,7 +207,7 @@
             </a>
 
 
-        <div class="bg-white py-24 sm:py-32">
+        <div v-if="!loading && users.length > 0" class="bg-white py-24 sm:py-32">
             <div class="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
                 <div class="max-w-xl">
                     <h2
@@ -249,22 +248,27 @@
             </div>
         </div>
     </div>
+     <!-- LOADER -->
+  <div v-if="loading" class="flex justify-center item-center h-[200px] ">
+    <div class="loader"></div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import useUser from "../../composables/users/useUser";
 import axios from "axios";
+import { UserType } from "../../types/users/UserType";
 
 const { user, showUser, updateUser, deleteUser } = useUser();
-
+const loading = ref(true);
 const formDataSub = ref({
     name: '',
     email: '',
     avatar: '',
 });
 
-const users = ref([]);
+const users = ref<UserType[]>([]);
 
 const loadFromServer = async () => {
     await axios
@@ -273,6 +277,9 @@ const loadFromServer = async () => {
             console.log("RES==>", res);
             users.value = res.data.data;
         })
+        .finally(() => {
+      loading.value = false; // désactive le loader quand la requête est finie
+    })
         .catch((err) => console.log(err));
 };
 
@@ -351,3 +358,31 @@ else {
 }
 
 </script>
+
+<style scoped>
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid rgba(32, 92, 195, 1);
+    border-bottom: 16px solid rgb(113, 32, 195);
+    width: 140px;
+    height: 140px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    position:relative;
+    top:70%;
+    left:1%;
+    z-index: 10;
+  }
+
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
